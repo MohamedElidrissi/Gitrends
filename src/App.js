@@ -1,13 +1,14 @@
 import React from 'react';
 import { ThemeProvider } from '@material-ui/core/styles';
 import CssBaseline from '@material-ui/core/CssBaseline';
-import Typography from '@material-ui/core/Typography';
+
+import Header from './components/Header';
 
 function App() {
   return (
     <CssBaseline>
       <ThemeProvider>
-        <Typography variant="h3">Gitrends</Typography>
+        <Header />
       </ThemeProvider>
     </CssBaseline>
   );
