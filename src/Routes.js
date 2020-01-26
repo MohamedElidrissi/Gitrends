@@ -2,12 +2,16 @@ import React from 'react';
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
 
 import NotFound from './pages/NotFound';
+import ReposList from './components/ReposList';
+import ReposProvider from './context/repos/ReposContext';
 
 export default () => (
-  <BrowserRouter>
-    <Switch>
-      <Route exact path="/" component={() => <h1>Home</h1>} />
-      <Route component={NotFound} />
-    </Switch>
-  </BrowserRouter>
+  <ReposProvider>
+    <BrowserRouter>
+      <Switch>
+        <Route exact path="/" component={ReposList} />
+        <Route component={NotFound} />
+      </Switch>
+    </BrowserRouter>
+  </ReposProvider>
 );
