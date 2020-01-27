@@ -25,13 +25,13 @@ function ReposList() {
 
   return (
     <Container className={classes.container}>
-      <Grid container justify="center">
-        <InfiniteScroller
-          initialLoad={true}
-          pageStart={0}
-          hasMore={state.repos.hasMore}
-          loadMore={page => fetchRepos(dispatch, page)}
-        >
+      <InfiniteScroller
+        initialLoad={true}
+        pageStart={0}
+        hasMore={state.repos.hasMore}
+        loadMore={page => fetchRepos(dispatch, page)}
+      >
+        <Grid container justify="center">
           {state.repos.items.map(
             ({ id, name, owner, description, html_url }) => (
               <Grid item key={id} className={classes.gridItem} xs={12} md={9}>
@@ -45,8 +45,8 @@ function ReposList() {
               </Grid>
             )
           )}
-        </InfiniteScroller>
-      </Grid>
+        </Grid>
+      </InfiniteScroller>
     </Container>
   );
 }
