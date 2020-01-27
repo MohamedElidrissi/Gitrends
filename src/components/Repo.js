@@ -6,7 +6,6 @@ import Card from '@material-ui/core/Card';
 import CardActions from '@material-ui/core/CardActions';
 import CardHeader from '@material-ui/core/CardHeader';
 import CardContent from '@material-ui/core/CardContent';
-import Link from '@material-ui/core/Link';
 import Typography from '@material-ui/core/Typography';
 
 function Repo({ name, ownerName, ownerAvatar, desc, repoUrl }) {
@@ -28,7 +27,7 @@ function Repo({ name, ownerName, ownerAvatar, desc, repoUrl }) {
       )}
       <CardActions>
         <Button
-          component={Link}
+          component="a"
           href={repoUrl}
           target="_blank"
           rel="noopenner noreferrer"
