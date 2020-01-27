@@ -2,6 +2,7 @@ import React from 'react';
 import InfiniteScroller from 'react-infinite-scroller';
 import { makeStyles } from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
+import CircularProgress from '@material-ui/core/CircularProgress';
 import Grid from '@material-ui/core/Grid';
 
 import { fetchRepos } from '../context/repos/ReposActions';
@@ -16,6 +17,9 @@ const useStyles = makeStyles(theme => ({
   gridItem: {
     marginTop: theme.spacing(2),
   },
+  progress: {
+    margin: theme.spacing(2),
+  },
 }));
 
 function ReposList() {
@@ -25,13 +29,18 @@ function ReposList() {
 
   return (
     <Container className={classes.container}>
-      <Grid container justify="center">
-        <InfiniteScroller
-          initialLoad={true}
-          pageStart={0}
-          hasMore={state.repos.hasMore}
-          loadMore={page => fetchRepos(dispatch, page)}
-        >
+      <InfiniteScroller
+        initialLoad={true}
+        pageStart={0}
+        hasMore={state.repos.hasMore}
+        loadMore={page => fetchRepos(dispatch, page)}
+        loader={
+          <Grid container justify="center">
+            <CircularProgress className={classes.progress} color="secondary" />
+          </Grid>
+        }
+      >
+        <Grid container justify="center">
           {state.repos.items.map(
             ({ id, name, owner, description, html_url }) => (
               <Grid item key={id} className={classes.gridItem} xs={12} md={9}>
@@ -45,8 +54,8 @@ function ReposList() {
               </Grid>
             )
           )}
-        </InfiniteScroller>
-      </Grid>
+        </Grid>
+      </InfiniteScroller>
     </Container>
   );
 }
