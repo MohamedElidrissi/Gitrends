@@ -9,8 +9,12 @@ axios.defaults.baseURL =
 const date = new Date();
 date.setDate(new Date().getDate() - 30);
 
-const formattedDate = `${date.getFullYear()}-${date.getMonth() +
-  1}-${date.getUTCDate()}`;
+// date in the format YYYY-MM-DD
+// https://stackoverflow.com/a/3605248
+const formattedDate = `${date.getFullYear()}-${(
+  '0' +
+  (date.getMonth() + 1)
+).slice(-2)}-${('0' + date.getDate()).slice(-2)}`;
 
 export async function fetchRepos(dispatch, page = 1) {
   try {
